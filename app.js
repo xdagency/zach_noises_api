@@ -8,6 +8,7 @@ const   express = require('express'),
         bodyParser = require('body-parser'),
         noiseRoutes = require('./routes/noiseRoutes'),
         typeRoutes = require('./routes/typeRoutes'),
+        searchRoutes = require('./routes/searchRoutes'),
         bookshelf = require('./database'),
         config = require('./config');
 
@@ -36,7 +37,7 @@ app.use(bodyParser.json());
 // Mount routes
 app.use('/api', noiseRoutes);
 app.use('/api', typeRoutes);
-
+app.use('/api', searchRoutes);
 
 
 /*
