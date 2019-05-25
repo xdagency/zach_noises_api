@@ -15,6 +15,7 @@ All requests must include an api key to be processed.
 
 ### Routes
 
+
 ```GET /api/noises```
 
 Returns _all_ noises
@@ -55,14 +56,28 @@ Returns a single type
 
 Returns _all_ noises of that type
 
+Coming soon. more_than, less_than
+
 -----
 
 ```POST /api/noise```
 
-coming.
+###### Body
+
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| type      | yes       | Number        |
+| --------- | --------- | ------------- |
+| severity  | yes       | Number        |
+
+Saves a noise to the database
 
 -----
 
 ```POST /api/type```
 
-coming.
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| name      | yes       | String        |
+
+Saves a noise type to the database
