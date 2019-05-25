@@ -31,6 +31,8 @@ router.get('/noises', (req, res) => {
 
 });
 
+
+// Get a noise
 router.get('/noise/:id', (req, res) => {
 
     // Get the noise ID from the request param
