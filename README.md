@@ -67,7 +67,6 @@ Coming soon. more_than, less_than
 | Name      | Required  | Description   |
 | --------- | --------- | ------------- |   
 | type      | yes       | Number        |
-| --------- | --------- | ------------- |
 | severity  | yes       | Number        |
 
 Saves a noise to the database
@@ -75,6 +74,8 @@ Saves a noise to the database
 -----
 
 ```POST /api/type```
+
+###### Body
 
 | Name      | Required  | Description   |
 | --------- | --------- | ------------- |   
