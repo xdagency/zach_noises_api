@@ -67,4 +67,42 @@ router.get('/noise/:id', (req, res) => {
 });
 
 
+/*
+    Noise /POST routes
+*/
+
+// Post a noise
+router.post('/noise', (req, res) => {
+
+    console.log(req.body);
+
+    // create a new Noise object
+    let newNoise = new Noises ({
+        type: req.body.type,
+        severity: req.body.severity,
+    });
+
+    // save the noise in the DB
+    newNoise.save()
+    
+        .then(savedNoise => {
+
+            // OK status & send back the newly saved noise
+            res.status(200).json(savedNoise);
+
+        })
+        
+        .catch(error => {
+
+            // log an errors
+            console.log('Post a new noise error:', error);
+
+            // send back error and a server error
+            res.status(500).json(error);
+
+        });
+
+})
+
+
 module.exports = router;
