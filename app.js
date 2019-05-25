@@ -34,6 +34,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+// Catch all route for authentication
+app.all('*', (req, res, next) => {
+
+    // Check for API KEY
+    let api_key = req.query.api_key;
+    
+    // If API_KEY does not match send a 403 forbidden error
+    if (api_key != config.API_KEY) {
+        res.status(403).send('Not allowed.');
+        return;
+    }
+
+    // If API_KEY matches keep going
+    next();
+
+})
+
+
 // Mount routes
 app.use('/api', noiseRoutes);
 app.use('/api', typeRoutes);

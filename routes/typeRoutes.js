@@ -67,4 +67,39 @@ router.get('/type/:id', (req, res) => {
 });
 
 
+/*
+    Type /POST routes
+*/
+
+// Post a type
+router.post('/type', (req, res) => {
+
+    // create a new Type object
+    let newType = new Types ({
+        name: req.body.name
+    });
+
+    // save the noise in the DB
+    newType.save()
+    
+        .then(savedType => {
+
+            // OK status & send back the newly saved type
+            res.status(200).json(savedType);
+
+        })
+        
+        .catch(error => {
+
+            // log an errors
+            console.log('Post a new type error:', error);
+
+            // send back error and a server error
+            res.status(500).json(error);
+
+        });
+
+})
+
+
 module.exports = router;

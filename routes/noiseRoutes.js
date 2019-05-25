@@ -74,8 +74,6 @@ router.get('/noise/:id', (req, res) => {
 // Post a noise
 router.post('/noise', (req, res) => {
 
-    console.log(req.body);
-
     // create a new Noise object
     let newNoise = new Noises ({
         type: req.body.type,
