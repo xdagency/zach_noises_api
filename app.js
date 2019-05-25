@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// Mount bag routes
+// Mount routes
 app.use('/api', noiseRoutes);
 app.use('/api', typeRoutes);
 
