@@ -16,6 +16,8 @@ Zach makes a lot of noises, they should be reported and saved.
 
 Returns _all_ noises
 
+-----
+
 ```GET /noise/:id```
 
 ##### Params
@@ -30,21 +32,35 @@ Returns _all_ noises
 | ----- | --------- | ------------- |   
 | id    | yes       | Number        |
 
+Returns a single noise
+
+-----
+
 ```GET /types```
 
+-----
+
 coming.
+
+-----
 
 ```GET /type/:type```
 
 coming.
 
+-----
+
 ```GET /search```
 
 coming.
 
+-----
+
 ```POST /noise```
 
 coming.
+
+-----
 
 ```POST /type```
 
