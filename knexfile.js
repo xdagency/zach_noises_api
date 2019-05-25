@@ -1,19 +1,20 @@
 // DB Connections
+const config = require('./config');
 
 module.exports = {
 
     client: 'pg',
     connection: process.env.DATABASE_URL || {
-        host     : '127.0.0.1',
-        user     : 'postgres',
-        password : 'postgres',
-        database : 'zach_noises',
+        host     : config.DB_HOST,
+        user     : config.DB_USER,
+        password : config.DB_PASSWORD,
+        database : config.DB_NAME,
         charset  : 'utf8'
     },
   
     development: {
       client: 'pg',
-      connection:'postgres://localhost/zach_noises',
+      connection: config.DB_PATH,
       migrations: {
         directory: './migrations'
       },
