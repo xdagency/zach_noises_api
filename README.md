@@ -4,64 +4,65 @@ Zach makes a lot of noises, they should be reported and saved.
 
 ## Usage
 
+### Api Key
+
+All requests must include an api key to be processed.
+
+| Name      | Required  | Example           |
+| --------- | --------- | ----------------- |
+| api_key   | yes       | ?api_key=API_KEY  |
+
+
 ### Routes
 
-```GET /noises```
-
-##### Params
-
-| Name      | Required  |
-| --------- | --------- |
-| api_key   | yes       |
+```GET /api/noises```
 
 Returns _all_ noises
 
 -----
 
-```GET /noise/:id```
-
-##### Params
-
-| Name      | Required  |
-| --------- | --------- |
-| api_key   | yes       |
-
-##### Body
+```GET /api/noise/:id```
 
 | Name  | Required  | Description   |
-| ----- | --------- | ------------- |   
+| ----- | --------- | ------------- |
 | id    | yes       | Number        |
 
 Returns a single noise
 
 -----
 
-```GET /types```
+```GET /api/types```
+
+Returns _all_ types
 
 -----
+
+```GET /api/type/:type```
+
+| Name  | Required  | Description   |
+| ----- | --------- | ------------- |
+| type  | yes       | Number        |
+
+Returns a single type
+
+-----
+
+```GET /api/search/:type```
+
+| Name  | Required  | Description   |
+| ----- | --------- | ------------- |   
+| type  | yes       | String        |
+
+Returns _all_ noises of that type
+
+-----
+
+```POST /api/noise```
 
 coming.
 
 -----
 
-```GET /type/:type```
-
-coming.
-
------
-
-```GET /search```
-
-coming.
-
------
-
-```POST /noise```
-
-coming.
-
------
-
-```POST /type```
+```POST /api/type```
 
 coming.
