@@ -1,2 +1,7 @@
-# zach_noises_api
-Zach makes a lot of noises
+# The Zach Noise API
+
+Zach makes a lot of noises, they should be reported and saved.
+
+## Usage
+
+Coming soon.
