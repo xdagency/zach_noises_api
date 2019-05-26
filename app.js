@@ -9,13 +9,15 @@ const   express = require('express'),
         noiseRoutes = require('./routes/noiseRoutes'),
         typeRoutes = require('./routes/typeRoutes'),
         searchRoutes = require('./routes/searchRoutes'),
-        bookshelf = require('./database'),
-        config = require('./config');
+        bookshelf = require('./database');
 
 
 // Set some basic stuff
 const   PORT = process.env.PORT || config.LOCAL_PORT;
+const   ENVIROMENT = process.env.NODE_ENV;
+const   config;
 
+if (ENVIROMENT === "development") { config = require('./config'); }
 
 /* 
     Middleware stack 
