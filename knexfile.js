@@ -5,16 +5,16 @@ module.exports = {
 
     client: 'pg',
     connection: process.env.DATABASE_URL || {
-        host     : config.DB_HOST,
-        user     : config.DB_USER,
-        password : config.DB_PASSWORD,
-        database : config.DB_NAME,
+        host     : process.env.DB_HOST,
+        user     : process.env.DB_USER,
+        password : process.env.DB_PASSWORD,
+        database : process.env.DB_NAME,
         charset  : 'utf8'
     },
   
     development: {
       client: 'pg',
-      connection: config.DB_PATH,
+      connection: process.env.DB_PATH,
       migrations: {
         directory: './migrations'
       },

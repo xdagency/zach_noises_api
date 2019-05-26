@@ -2,6 +2,8 @@
     Setup
 */
 
+require('dotenv').config()
+
 // Import some basic stuff
 const   express = require('express'),
         app = express(),
@@ -13,10 +15,8 @@ const   express = require('express'),
 
 
 // Set some basic stuff
-let     config = {};
 const   ENVIROMENT = process.env.NODE_ENV;
-if (ENVIROMENT != "production") { config = require('./config'); }
-const   PORT = process.env.PORT || config.LOCAL_PORT;
+const   PORT = process.env.PORT;
 
 
 /* 
@@ -41,7 +41,7 @@ app.all('*', (req, res, next) => {
 
     // Check for API KEY
     let keyToCheck = req.query.api_key;
-    let api_key = process.env.API_KEY || config.API_KEY;
+    let api_key = process.env.API_KEY;
     
     // If API_KEY does not match send a 403 forbidden error
     if (keyToCheck != api_key) {
