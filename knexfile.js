@@ -1,6 +1,4 @@
 // DB Connections
-const config = require('./config');
-
 module.exports = {
 
     client: 'pg',
