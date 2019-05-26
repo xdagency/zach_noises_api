@@ -1,5 +1,6 @@
 const   express = require('express'),
         router = express.Router(),
+        { check, validationResult, body } = require('express-validator/check'),
         Noises = require('../models/noises');
 
 /*
@@ -72,7 +73,18 @@ router.get('/noise/:id', (req, res) => {
 */
 
 // Post a noise
-router.post('/noise', (req, res) => {
+router.post('/noise', [
+    
+    check('type').isNumeric().trim().escape().withMessage('Type must be an ID'), 
+    check('severity').isFloat({ gt: 0.999, lt: 6.001 }).trim().escape().withMessage('Severity must be a number between 1 and 6')
+
+], (req, res) => {
+
+    // Return any errors from the values posted to the API
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(403).json({ errors: errors.array() });
+    }
 
     // create a new Noise object
     let newNoise = new Noises ({

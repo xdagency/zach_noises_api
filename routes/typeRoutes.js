@@ -1,5 +1,6 @@
 const   express = require('express'),
         router = express.Router(),
+        { check, validationResult, body } = require('express-validator/check'),
         Types = require('../models/types');
 
 /*
@@ -72,7 +73,17 @@ router.get('/type/:id', (req, res) => {
 */
 
 // Post a type
-router.post('/type', (req, res) => {
+router.post('/type', [
+
+    check('name').isAlphanumeric().trim().escape().withMessage('The noise type name must be alphanumeric')
+
+], (req, res) => {
+
+    // Return any errors from the values posted to the API
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(403).json({ errors: errors.array() });
+    }
 
     // create a new Type object
     let newType = new Types ({
