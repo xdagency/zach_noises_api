@@ -41,7 +41,7 @@ app.all('*', (req, res, next) => {
     let api_key = req.query.api_key;
     
     // If API_KEY does not match send a 403 forbidden error
-    if (api_key != config.API_KEY) {
+    if (api_key != config.API_KEY || api_key != process.env.API_KEY) {
         res.status(403).send('Not allowed.');
         return;
     }
