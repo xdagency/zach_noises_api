@@ -15,7 +15,7 @@ const   express = require('express'),
 // Set some basic stuff
 let     config = {};
 const   ENVIROMENT = process.env.NODE_ENV;
-if (ENVIROMENT !== "production") { config = require('./config'); }
+if (ENVIROMENT != "production") { config = require('./config'); }
 const   PORT = process.env.PORT || config.LOCAL_PORT;
 
 
