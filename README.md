@@ -4,9 +4,13 @@ Zach makes a lot of noises, they should be reported and saved.
 
 ## Usage
 
+### Where
+
+https://zach-noise-api.herokuapp.com/api/
+
 ### Api Key
 
-All requests must include an api key to be processed.
+All requests must include an ```api_key``` to be processed.
 
 | Name      | Required  | Example           |
 | --------- | --------- | ----------------- |
@@ -68,6 +72,7 @@ Coming soon. more_than, less_than
 | --------- | --------- | --------------------- |   
 | type      | yes       | Number (type id)      |
 | severity  | yes       | Float (min:1, max:6)  |
+| reporter  | No        | Number (reporter id)  |
 
 Saves a noise to the database
 
