@@ -64,10 +64,10 @@ Coming soon. more_than, less_than
 
 ###### Body
 
-| Name      | Required  | Description   |
-| --------- | --------- | ------------- |   
-| type      | yes       | Number        |
-| severity  | yes       | Number        |
+| Name      | Required  | Description           |
+| --------- | --------- | --------------------- |   
+| type      | yes       | Number (type id)      |
+| severity  | yes       | Float (min:1, max:6)  |
 
 Saves a noise to the database
 
