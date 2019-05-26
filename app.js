@@ -13,11 +13,11 @@ const   express = require('express'),
 
 
 // Set some basic stuff
-const   PORT = process.env.PORT || config.LOCAL_PORT;
+let     config = {};
 const   ENVIROMENT = process.env.NODE_ENV;
-const   config;
+if (ENVIROMENT !== "production") { config = require('./config'); }
+const   PORT = process.env.PORT || config.LOCAL_PORT;
 
-if (ENVIROMENT === "development") { config = require('./config'); }
 
 /* 
     Middleware stack 
@@ -40,10 +40,11 @@ app.use(bodyParser.json());
 app.all('*', (req, res, next) => {
 
     // Check for API KEY
-    let api_key = req.query.api_key;
+    let keyToCheck = req.query.api_key;
+    let api_key = process.env.API_KEY || config.API_KEY;
     
     // If API_KEY does not match send a 403 forbidden error
-    if (api_key != config.API_KEY || api_key != process.env.API_KEY) {
+    if (keyToCheck != api_key) {
         res.status(403).send('Not allowed.');
         return;
     }
