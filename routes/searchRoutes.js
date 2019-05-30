@@ -18,7 +18,7 @@ router.get('/search/:type', (req, res) => {
 
     // Convert the type in the request to a titleCase word for searching purposes
     let typeName = titleCase(req.params.type);
-    console.log('Searching for:', typeName);
+
 
     // Get the id of the type that matches the param
     Types.where({ name: typeName })
@@ -57,7 +57,20 @@ router.get('/search/:type', (req, res) => {
     // Search noises based on the type in the request and send back everything found
     function searchNoises(type) {
 
-        Noises.where({ type: type }).fetchAll()
+        // grab the more_than and less_than requests
+        let lessThan = req.query.less_than || 9;
+        let moreThan = req.query.more_than || 0;
+
+
+        // Find all noises from that type that are more_than and less_than...
+        Noises.where(function() {
+
+            this.where({ type: type })
+                .andWhere('severity', '>', moreThan)
+                .andWhere('severity', '<', lessThan)
+            })
+        
+            .fetchAll()
         
             .then(results => {
 

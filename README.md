@@ -52,15 +52,17 @@ Returns a single type
 
 -----
 
-```GET /api/search/:type```
+```GET /api/search/:type?more_than=2&less_than=5```
 
-| Name  | Required  | Description   |
-| ----- | --------- | ------------- |   
-| type  | yes       | String        |
+| Name       | Required  | Description   |
+| ---------- | --------- | ------------- |   
+| type       | yes       | String        |
+| more_than  | no        | Number        |
+| less_than  | no        | Number        |
 
 Returns _all_ noises of that type
-
-Coming soon. more_than, less_than
+Returns _all_ noises of that type _more than_ x
+Returns _all_ noises of that type _less than_ x
 
 -----
 
@@ -87,3 +89,14 @@ Saves a noise to the database
 | name      | yes       | String        |
 
 Saves a noise type to the database
+
+
+-----
+
+```DELETE /api/noise/:id```
+
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| id        | yes       | Number        |
+
+Deletes a noise from the database
