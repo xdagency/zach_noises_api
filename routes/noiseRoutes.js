@@ -76,7 +76,8 @@ router.get('/noise/:id', (req, res) => {
 router.post('/noise', [
     
     check('type').isNumeric().trim().escape().withMessage('Type must be an ID'), 
-    check('severity').isFloat({ gt: 0.999, lt: 6.001 }).trim().escape().withMessage('Severity must be a number between 1 and 6')
+    check('severity').isFloat({ gt: 0.999, lt: 6.001 }).trim().escape().withMessage('Severity must be a number between 1 and 6'),
+    check('reporter').isNumeric().trim().escape().withMessage('Reporter must be an ID')
 
 ], (req, res) => {
 
@@ -90,7 +91,10 @@ router.post('/noise', [
     let newNoise = new Noises ({
         type: req.body.type,
         severity: req.body.severity,
+        reporter: req.body.reporter
     });
+
+    console.log(newNoise);
 
     // save the noise in the DB
     newNoise.save()
@@ -112,7 +116,41 @@ router.post('/noise', [
 
         });
 
-})
+});
+
+
+
+/*
+    Noise /DELETE routes
+*/
+
+// Post a noise
+
+router.delete('/noise/:id', (req, res) => {
+
+    // Get the noise ID from the request param
+    let noise_id = req.params.id;
+
+    Noises.where({ id: noise_id }).destroy()
+        
+        .then(results => {
+
+            // OK status & send results, as JSON, back in response
+            res.status(200).send('Noise DELETED.');
+
+        })
+
+        .catch(error => {
+
+            // log errors
+            console.log('Destroy a noise error:', error);
+            
+            // send an internal server error
+            res.status(500);
+
+        })
+
+});
 
 
 module.exports = router;

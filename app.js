@@ -36,8 +36,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// Catch all route for authentication
-app.all('*', (req, res, next) => {
+// Home route
+app.get('/', (req, res) => {
+
+    // Send a homepage
+    res.sendFile(__dirname + '/public/index.html');
+
+});
+
+
+// Catch all api route for authentication
+app.all('/api/*', (req, res, next) => {
 
     // Check for API KEY
     let keyToCheck = req.query.api_key;
