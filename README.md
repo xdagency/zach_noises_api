@@ -36,6 +36,45 @@ Returns a single noise
 
 -----
 
+```POST /api/noise```
+
+###### Body
+
+| Name      | Required  | Description           |
+| --------- | --------- | --------------------- |   
+| type      | yes       | Number (type id)      |
+| severity  | yes       | Float (min:1, max:6)  |
+| reporter  | No        | Number (reporter id)  |
+
+Saves a noise to the database
+
+-----
+
+```PATCH /api/noise/:id```
+
+###### Body
+
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| ID        | yes       | Number        |
+| Severity  | No        | Number (ID)   |
+| Reporter  | No        | Number (ID)   |
+| Type      | No        | Number (ID)   |
+
+Updates a noise at a specific ID
+
+-----
+
+```DELETE /api/noise/:id```
+
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| id        | yes       | Number        |
+
+Deletes a noise from the database
+
+-----
+
 ```GET /api/types```
 
 Returns _all_ types
@@ -52,6 +91,18 @@ Returns a single type
 
 -----
 
+```POST /api/type```
+
+###### Body
+
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| name      | yes       | String        |
+
+Saves a noise type to the database
+
+-----
+
 ```GET /api/search/:type?more_than=2&less_than=5```
 
 | Name       | Required  | Description   |
@@ -63,40 +114,3 @@ Returns a single type
 Returns _all_ noises of that type
 Returns _all_ noises of that type _more than_ x
 Returns _all_ noises of that type _less than_ x
-
------
-
-```POST /api/noise```
-
-###### Body
-
-| Name      | Required  | Description           |
-| --------- | --------- | --------------------- |   
-| type      | yes       | Number (type id)      |
-| severity  | yes       | Float (min:1, max:6)  |
-| reporter  | No        | Number (reporter id)  |
-
-Saves a noise to the database
-
------
-
-```POST /api/type```
-
-###### Body
-
-| Name      | Required  | Description   |
-| --------- | --------- | ------------- |   
-| name      | yes       | String        |
-
-Saves a noise type to the database
-
-
------
-
-```DELETE /api/noise/:id```
-
-| Name      | Required  | Description   |
-| --------- | --------- | ------------- |   
-| id        | yes       | Number        |
-
-Deletes a noise from the database

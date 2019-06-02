@@ -94,8 +94,6 @@ router.post('/noise', [
         reporter: req.body.reporter
     });
 
-    console.log(newNoise);
-
     // save the noise in the DB
     newNoise.save()
     
@@ -119,12 +117,68 @@ router.post('/noise', [
 });
 
 
+/*
+    Noise /PATCH routes
+*/
+
+// Patch a noise
+router.patch('/noise/:id', (req, res) => {
+
+    // grab the ID of the noise
+    let noise_id = req.params.id;
+
+    // Create a new Date object
+    let date = new Date();
+
+    let updatedNoise = {
+        modified_at: date.toISOString(),
+    }
+
+    // Are we updating severity
+    if (req.body.severity !== null) {
+        updatedNoise.severity = req.body.severity
+    }
+
+    // Are we updating Reporter
+    if (req.body.reporter !== null) {
+        updatedNoise.reporter = req.body.reporter
+    }
+
+    // Are we updating Type
+    if (req.body.type !== null) {
+        updatedNoise.type = req.body.type
+    }
+
+    Noises.forge({ id: noise_id })
+
+        .save(updatedNoise)
+
+        .then(result => {
+
+            // Send OK status and what was updated
+            res.status(200).json(result);
+
+        })
+
+        .catch(error => {
+
+            // log the error
+            console.log(error);
+
+            // Send status and error
+            res.status(502).json(erorr);
+
+        });
+
+});
+
+
 
 /*
     Noise /DELETE routes
 */
 
-// Post a noise
+// Delete a noise
 
 router.delete('/noise/:id', (req, res) => {
 

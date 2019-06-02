@@ -11,6 +11,7 @@ const   express = require('express'),
         noiseRoutes = require('./routes/noiseRoutes'),
         typeRoutes = require('./routes/typeRoutes'),
         searchRoutes = require('./routes/searchRoutes'),
+        reporterRoutes = require('./routes/reporterRoutes'),
         bookshelf = require('./database');
 
 
@@ -44,6 +45,13 @@ app.get('/', (req, res) => {
 
 });
 
+app.post('/submit', (req, res) => {
+
+    // Send the submit page
+    res.sendFile(__dirname + '/public/submit.html');
+
+})
+
 
 // Catch all api route for authentication
 app.all('/api/*', (req, res, next) => {
@@ -68,6 +76,7 @@ app.all('/api/*', (req, res, next) => {
 app.use('/api', noiseRoutes);
 app.use('/api', typeRoutes);
 app.use('/api', searchRoutes);
+app.use('/api', reporterRoutes);
 
 
 /*
