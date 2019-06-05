@@ -7,6 +7,7 @@ require('dotenv').config()
 // Import some basic stuff
 const   express = require('express'),
         app = express(),
+        basicAuth = require('express-basic-auth'),
         bodyParser = require('body-parser'),
         noiseRoutes = require('./routes/noiseRoutes'),
         typeRoutes = require('./routes/typeRoutes'),
@@ -25,7 +26,12 @@ const   PORT = process.env.PORT;
 */
 
 // Authenticate public pages
-// app.use(auth);
+app.use(basicAuth({
+    users: { 'admin': process.env.SITE_PASSWORD },
+    challenge: true,
+    realm: 'zach-noise-api'
+}))
+
 
 // headers to fix CORS issues
 app.use((req, res, next) => {
