@@ -106,7 +106,7 @@ Saves a noise type to the database
 
 -----
 
-```GET /api/search/:type?more_than=2&less_than=5```
+```GET /api/search/:type?more_than=[NUMBER]&less_than=[NUMBER]```
 
 | Name       | Required  | Description   |
 | ---------- | --------- | ------------- |   
@@ -114,6 +114,6 @@ Saves a noise type to the database
 | more_than  | no        | Number        |
 | less_than  | no        | Number        |
 
-Returns _all_ noises of that type
-Returns _all_ noises of that type _more than_ x
-Returns _all_ noises of that type _less than_ x
+Returns _all_ noises of that type  
+Returns _all_ noises of that type _more than_ x  
+Returns _all_ noises of that type _less than_ x 
