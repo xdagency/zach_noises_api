@@ -52,11 +52,14 @@ Saves a noise to the database
 
 ```PATCH /api/noise/:id```
 
+| Name  | Required  | Description   |
+| ----- | --------- | ------------- |
+| id    | yes       | Number        |
+
 ###### Body
 
 | Name      | Required  | Description   |
 | --------- | --------- | ------------- |   
-| ID        | yes       | Number        |
 | Severity  | No        | Number (ID)   |
 | Reporter  | No        | Number (ID)   |
 | Type      | No        | Number (ID)   |

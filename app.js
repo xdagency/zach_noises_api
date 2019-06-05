@@ -5,7 +5,8 @@
 require('dotenv').config()
 
 // Import some basic stuff
-const   express = require('express'),
+const   auth = require('./auth'),
+        express = require('express'),
         app = express(),
         bodyParser = require('body-parser'),
         noiseRoutes = require('./routes/noiseRoutes'),
@@ -24,6 +25,9 @@ const   PORT = process.env.PORT;
     Middleware stack 
 */
 
+// Authenticate public pages
+app.use(auth);
+
 // headers to fix CORS issues
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -40,17 +44,10 @@ app.use(bodyParser.json());
 // Home route
 app.get('/', (req, res) => {
 
-    // Send a homepage
+    // Send the index page
     res.sendFile(__dirname + '/public/index.html');
 
 });
-
-app.post('/submit', (req, res) => {
-
-    // Send the submit page
-    res.sendFile(__dirname + '/public/submit.html');
-
-})
 
 
 // Catch all api route for authentication
