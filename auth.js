@@ -17,7 +17,7 @@ module.exports = function(req, res, next) {
 
     // If username and password don't match, don't allow user access
     if (user.name !== admin.name && user.pass !== admin.pass) {
-        res.set('WWW-Authenticate', 'Basic realm="example"');
+        res.set('WWW-Authenticate', 'Basic realm="zach-noise-api"');
         return res.status(401).send('Not allowed.');
     }
 
