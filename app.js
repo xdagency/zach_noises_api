@@ -25,13 +25,6 @@ const   PORT = process.env.PORT;
     Middleware stack 
 */
 
-// Authenticate public pages
-app.use(basicAuth({
-    users: { 'admin': process.env.SITE_PASSWORD },
-    challenge: true,
-    realm: 'zach-noise-api'
-}))
-
 
 // headers to fix CORS issues
 app.use((req, res, next) => {
@@ -45,20 +38,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// look at public folder for static assets
-app.use(express.static(__dirname + '/public'));
 
-
-// Home route
-app.get('/', (req, res) => {
-
-    // Send the index page
-    res.sendFile('/index.html');
-
-});
-
-
-// Catch all api route for authentication
+// Catch all api route for api_key authentication
 app.all('/api/*', (req, res, next) => {
 
     // Check for API KEY
@@ -82,6 +63,19 @@ app.use('/api', noiseRoutes);
 app.use('/api', typeRoutes);
 app.use('/api', searchRoutes);
 app.use('/api', reporterRoutes);
+
+
+
+// Authenticate public pages
+app.use('/', basicAuth({
+    users: { 'admin': process.env.SITE_PASSWORD },
+    challenge: true,
+    realm: 'zach-noise-api'
+}));
+
+// look at public folder for static assets
+app.use(express.static(__dirname + '/public'));
+
 
 
 /*
