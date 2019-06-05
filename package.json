@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/xdagency/zach_noises_api#readme",
   "dependencies": {
-    "basic-auth": "^2.0.1",
     "body-parser": "^1.19.0",
     "bookshelf": "^0.14.2",
     "dotenv": "^8.0.0",

@@ -5,8 +5,7 @@
 require('dotenv').config()
 
 // Import some basic stuff
-const   auth = require('./auth'),
-        express = require('express'),
+const   express = require('express'),
         app = express(),
         bodyParser = require('body-parser'),
         noiseRoutes = require('./routes/noiseRoutes'),
@@ -26,7 +25,7 @@ const   PORT = process.env.PORT;
 */
 
 // Authenticate public pages
-app.use(auth);
+// app.use(auth);
 
 // headers to fix CORS issues
 app.use((req, res, next) => {
