@@ -34,7 +34,7 @@ router.get('/types', (req, res) => {
 
 
 // Get a type
-router.get('/type/:id', (req, res) => {
+router.get('/types/:id', (req, res) => {
 
     // Get the noise ID from the request param
     let type_id = req.params.id;
@@ -73,7 +73,7 @@ router.get('/type/:id', (req, res) => {
 */
 
 // Post a type
-router.post('/type', [
+router.post('/types', [
 
     check('name').isAlphanumeric().trim().escape().withMessage('The noise type name must be alphanumeric')
 

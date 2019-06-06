@@ -9,11 +9,11 @@ const   express = require('express'),
 */
 
 // Search for noises of a specific type
-router.get('/reporter/:id', (req, res) => {
+router.get('/reporters/:id', (req, res) => {
 
 });
 
-router.post('/reporter', [
+router.post('/reporters', [
 
     check('name').isAlphanumeric().trim().escape().withMessage('Name must be alphanumeric'), 
     check('password').trim().escape().withMessage('Bad password'),

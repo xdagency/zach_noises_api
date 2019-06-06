@@ -26,7 +26,7 @@ Returns _all_ noises
 
 -----
 
-```GET /api/noise/:id```
+```GET /api/noises/:id```
 
 | Name  | Required  | Description   |
 | ----- | --------- | ------------- |
@@ -36,7 +36,7 @@ Returns a single noise
 
 -----
 
-```POST /api/noise```
+```POST /api/noises```
 
 ###### Body
 
@@ -50,7 +50,7 @@ Saves a noise to the database
 
 -----
 
-```PATCH /api/noise/:id```
+```PATCH /api/noises/:id```
 
 | Name  | Required  | Description   |
 | ----- | --------- | ------------- |
@@ -68,7 +68,7 @@ Updates a noise at a specific ID
 
 -----
 
-```DELETE /api/noise/:id```
+```DELETE /api/noises/:id```
 
 | Name      | Required  | Description   |
 | --------- | --------- | ------------- |   
@@ -84,7 +84,7 @@ Returns _all_ types
 
 -----
 
-```GET /api/type/:type```
+```GET /api/types/:type```
 
 | Name  | Required  | Description   |
 | ----- | --------- | ------------- |
@@ -94,7 +94,7 @@ Returns a single type
 
 -----
 
-```POST /api/type```
+```POST /api/types```
 
 ###### Body
 

@@ -34,7 +34,7 @@ router.get('/noises', (req, res) => {
 
 
 // Get a noise
-router.get('/noise/:id', (req, res) => {
+router.get('/noises/:id', (req, res) => {
 
     // Get the noise ID from the request param
     let noise_id = req.params.id;
@@ -73,7 +73,7 @@ router.get('/noise/:id', (req, res) => {
 */
 
 // Post a noise
-router.post('/noise', [
+router.post('/noises', [
     
     check('type').isNumeric().trim().escape().withMessage('Type must be an ID'), 
     check('severity').isFloat({ gt: 0.999, lt: 6.001 }).trim().escape().withMessage('Severity must be a number between 1 and 6'),
@@ -122,7 +122,7 @@ router.post('/noise', [
 */
 
 // Patch a noise
-router.patch('/noise/:id', (req, res) => {
+router.patch('/noises/:id', (req, res) => {
 
     // grab the ID of the noise
     let noise_id = req.params.id;
@@ -180,7 +180,7 @@ router.patch('/noise/:id', (req, res) => {
 
 // Delete a noise
 
-router.delete('/noise/:id', (req, res) => {
+router.delete('/noises/:id', (req, res) => {
 
     // Get the noise ID from the request param
     let noise_id = req.params.id;
