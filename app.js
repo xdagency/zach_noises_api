@@ -9,6 +9,7 @@ const   express = require('express'),
         app = express(),
         basicAuth = require('express-basic-auth'),
         bodyParser = require('body-parser'),
+        rateLimit = require('express-rate-limit'),
         noiseRoutes = require('./routes/noiseRoutes'),
         typeRoutes = require('./routes/typeRoutes'),
         searchRoutes = require('./routes/searchRoutes'),
@@ -16,9 +17,15 @@ const   express = require('express'),
         bookshelf = require('./database');
 
 
+app.set('trust proxy', 1);
+
 // Set some basic stuff
 const   ENVIROMENT = process.env.NODE_ENV;
 const   PORT = process.env.PORT;
+const   apiLimiter = rateLimit({
+    windowMs: 5 * 1000, // 5 seconds
+    max: 1
+});
 
 
 /* 
@@ -37,6 +44,10 @@ app.use((req, res, next) => {
 // body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+// rate limiter
+app.use('/api/', apiLimiter);
 
 
 // Catch all api route for api_key authentication
