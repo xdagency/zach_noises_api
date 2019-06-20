@@ -84,11 +84,11 @@ Returns _all_ types
 
 -----
 
-```GET /api/types/:type```
+```GET /api/types/:id```
 
 | Name  | Required  | Description   |
 | ----- | --------- | ------------- |
-| type  | yes       | Number        |
+| id    | yes       | Number        |
 
 Returns a single type
 
@@ -103,6 +103,22 @@ Returns a single type
 | name      | yes       | String        |
 
 Saves a noise type to the database
+
+-----
+
+```PATCH /api/types/:id```
+
+| Name  | Required  | Description   |
+| ----- | --------- | ------------- |
+| id    | yes       | Number        |
+
+###### Body
+
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| Name      | Yes       | String        |
+
+Updates a type at a specific ID
 
 -----
 
