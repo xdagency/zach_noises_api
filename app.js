@@ -45,17 +45,24 @@ app.all('/api/*', (req, res, next) => {
     // Check for API KEY
     let keyToCheck = req.query.api_key;
     let api_key = process.env.API_KEY;
+    let editor_key = process.env.EDITOR_KEY;
+    let admin_key = process.env.ADMIN_KEY;
     
-    // If API_KEY does not match send a 403 forbidden error
-    if (keyToCheck != api_key) {
-        res.status(403).send('Not allowed.');
-        return;
+    // If one of the API_KEY does not match send a 403 forbidden error
+    if (keyToCheck === api_key || keyToCheck === editor_key || keyToCheck === admin_key) {
+        // If API_KEY matches keep going
+        next();
     }
 
-    // If API_KEY matches keep going
-    next();
+    else {
 
-})
+        // Give error if there are no matches to API_KEYs
+        res.status(403).send('Not allowed.');
+        return;
+
+    }
+
+});
 
 
 // Mount routes

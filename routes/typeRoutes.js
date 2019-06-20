@@ -110,7 +110,53 @@ router.post('/types', [
 
         });
 
-})
+});
+
+
+/*
+    Type /PATCH routes
+*/
+
+// Patch a noise
+router.patch('/types/:id', (req, res) => {
+
+    // grab the ID of the noise
+    let type_id = req.params.id;
+
+    // Create a new Date object
+    let date = new Date();
+
+    let updatedType = {
+        modified_at: date.toISOString(),
+    }
+
+    // Are we updating name
+    if (req.body.name !== null) {
+        updatedType.name = req.body.name
+    }
+
+    Types.forge({ id: type_id })
+
+        .save(updatedType)
+
+        .then(result => {
+
+            // Send OK status and what was updated
+            res.status(200).json(result);
+
+        })
+
+        .catch(error => {
+
+            // log the error
+            console.log(error);
+
+            // Send status and error
+            res.status(502).json(error);
+
+        });
+
+});
 
 
 module.exports = router;

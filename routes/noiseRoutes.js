@@ -1,7 +1,8 @@
 const   express = require('express'),
         router = express.Router(),
         { check, validationResult, body } = require('express-validator/check'),
-        Noises = require('../models/noises');
+        Noises = require('../models/noises'),
+        checkPermission = require('../permission');
 
 /*
     Noise /GET routes
@@ -80,6 +81,9 @@ router.post('/noises', [
     check('reporter').isNumeric().trim().escape().withMessage('Reporter must be an ID')
 
 ], (req, res) => {
+
+
+    checkPermission(2);
 
     // Return any errors from the values posted to the API
     const errors = validationResult(req);
@@ -166,7 +170,7 @@ router.patch('/noises/:id', (req, res) => {
             console.log(error);
 
             // Send status and error
-            res.status(502).json(erorr);
+            res.status(502).json(error);
 
         });
 
