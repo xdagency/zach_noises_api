@@ -159,4 +159,17 @@ router.patch('/types/:id', (req, res) => {
 });
 
 
+
+/*
+    Types CATCH ALL route
+*/
+
+router.all('/types', (req, res) => {
+
+    // Nothing at the rest of the endpoints
+    res.status(404).send('Nothing found.')
+
+});
+
+
 module.exports = router;

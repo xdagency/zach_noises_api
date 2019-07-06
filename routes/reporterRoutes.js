@@ -56,7 +56,20 @@ router.post('/reporters', [
 
         });
 
-})
+});
+
+
+
+/*
+    Reporter CATCH ALL route
+*/
+
+router.all('/reporters', (req, res) => {
+
+    // Nothing at the rest of the endpoints
+    res.status(404).send('Nothing found.')
+
+});
 
 
 module.exports = router;

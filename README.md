@@ -131,5 +131,5 @@ Updates a type at a specific ID
 | less_than  | no        | Number        |
 
 Returns _all_ noises of that type  
-Returns _all_ noises of that type _more than_ x  
-Returns _all_ noises of that type _less than_ x 
+Returns _all_ noises of that type with a severity _more than_ x 
+Returns _all_ noises of that type with a severity _less than_ y

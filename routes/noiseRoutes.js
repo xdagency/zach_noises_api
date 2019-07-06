@@ -207,4 +207,17 @@ router.delete('/noises/:id', (req, res) => {
 });
 
 
+
+/*
+    Noises CATCH ALL route
+*/
+
+router.all('/noises', (req, res) => {
+
+    // Nothing at the rest of the endpoints
+    res.status(404).send('Nothing found.')
+
+});
+
+
 module.exports = router;

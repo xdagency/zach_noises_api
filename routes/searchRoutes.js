@@ -94,4 +94,17 @@ router.get('/search/:type', (req, res) => {
 });
 
 
+
+/*
+    Search CATCH ALL route
+*/
+
+router.all('/search', (req, res) => {
+
+    // Nothing at the rest of the endpoints
+    res.status(404).send('Nothing found.')
+
+});
+
+
 module.exports = router;
