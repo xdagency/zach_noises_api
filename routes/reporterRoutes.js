@@ -8,8 +8,40 @@ const   express = require('express'),
     Reporter /GET routes
 */
 
-// Search for noises of a specific type
+// Get a reporter at a specific id
 router.get('/reporters/:id', (req, res) => {
+
+    // Get the reporter ID from the request param
+    let reporter_id = req.params.id;
+
+    // Search DB for the reporter with that ID
+    Reporters.where({ id: reporter_id }).fetch()
+    
+    .then(result => {
+        
+        // If result is null, meaning nothing was found under that id then send a 404
+        if (result === null) {
+            res.status(404).send('No reporter found.');
+            return;
+        }
+
+        // OK status & Send the results
+        res.status(200).json({
+            id: result.attributes.id,
+            name: result.attributes.name
+        });
+        
+    })
+
+    .catch(error => {
+
+        // log errors
+        console.log('Fetch a single reporter error:', error);
+
+        // send an internal server error
+        res.status(500);
+
+    })
 
 });
 
