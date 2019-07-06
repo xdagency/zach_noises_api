@@ -15,8 +15,11 @@ router.get('/noises', (req, res) => {
         
         .then(results => {
 
-            // OK status & send results, as JSON, back in response
-            res.status(200).json(results);
+            // OK status, details and results array, as JSON, back in response
+            res.status(200).json({
+                totalNoises: results.length,
+                noises: results
+            });
 
         })
 
