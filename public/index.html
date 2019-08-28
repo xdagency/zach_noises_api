@@ -171,15 +171,22 @@
 
                 $("#form").submit(function(event) {
 
+                    $("#overlay").addClass("show");
                     event.preventDefault();
 
                     $.post("https://zach-noise-api.herokuapp.com/api/noises?api_key=5c0a5fcb-8a12-4def-abb9-05b97d64c03f", $("#form").serialize(), function() {
 
+                        $("#overlay").removeClass("show");
                         alert("Noise submitted!");
 
                     })
 
-                    .fail(function() { alert("Could not submit noise"); })
+                    .fail(function() { 
+
+                        $("#overlay").removeClass("show");
+                        alert("Could not submit noise"); 
+
+                    })
 
                 })
 
