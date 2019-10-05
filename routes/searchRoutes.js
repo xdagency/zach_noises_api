@@ -58,7 +58,6 @@ router.get('/search', (req, res) => {
             // Send a server error
             res.status(500);
 
-
         });
 
 });
