@@ -122,11 +122,11 @@ Updates a type at a specific ID
 
 -----
 
-```GET /api/search/:type?more_than=[NUMBER]&less_than=[NUMBER]```
+```GET /api/search?query=[QUERY]&more_than=[NUMBER]&less_than=[NUMBER]```
 
 | Name       | Required  | Description   |
 | ---------- | --------- | ------------- |   
-| type       | yes       | String        |
+| query      | yes       | String        |
 | more_than  | no        | Number        |
 | less_than  | no        | Number        |
 

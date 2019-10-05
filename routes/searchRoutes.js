@@ -9,15 +9,18 @@ const   express = require('express'),
 */
 
 // Search for noises of a specific type
-router.get('/search/:type', (req, res) => {
+router.get('/search', (req, res) => {
 
     // titleCase function
     function titleCase(str) {
         return str.toLowerCase().split('').map(function(letter, i) { return i === 0 ? letter = letter.toUpperCase() : letter = letter }).join('');
     }
 
-    // Convert the type in the request to a titleCase word for searching purposes
-    let typeName = titleCase(req.params.type);
+    // Convert the type in the request query to a titleCase word for searching purposes
+    let typeName = titleCase(req.query.query);
+    // grab the more_than and less_than requests
+    let lessThan = req.query.less_than || 9;
+    let moreThan = req.query.more_than || 0;
 
 
     // Get the id of the type that matches the param
@@ -32,13 +35,18 @@ router.get('/search/:type', (req, res) => {
                 throw new Error('Type doesn\'t exist');
             }
 
-            return result.id
+            // Return a second query which looks for all noises with the type equal
+            // to result.id which we got from the initial search
+            return Noises.where(function() { this.where({ type: result.id }).andWhere('severity', '>', moreThan).andWhere('severity', '<', lessThan)}).fetchAll()
 
         })
 
-        .then(id => {
+        .then(results => {
 
-            searchNoises(id);
+            // console.log(results);
+
+            // OK status & send results, as JSON, back in response
+            res.status(200).json(results);
 
         })
 
@@ -52,44 +60,6 @@ router.get('/search/:type', (req, res) => {
 
 
         });
-    
-
-    // Search noises based on the type in the request and send back everything found
-    function searchNoises(type) {
-
-        // grab the more_than and less_than requests
-        let lessThan = req.query.less_than || 9;
-        let moreThan = req.query.more_than || 0;
-
-
-        // Find all noises from that type that are more_than and less_than...
-        Noises.where(function() {
-
-            this.where({ type: type })
-                .andWhere('severity', '>', moreThan)
-                .andWhere('severity', '<', lessThan)
-            })
-        
-            .fetchAll()
-        
-            .then(results => {
-
-                // OK status & send results, as JSON, back in response
-                res.status(200).json(results);
-
-            })
-
-            .catch(error => {
-
-                // log errors
-                console.log('Fetch all noises error:', error);
-                
-                // send a internal server error
-                res.status(500);
-
-            })
-
-    }
 
 });
 
