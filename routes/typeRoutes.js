@@ -159,6 +159,39 @@ router.patch('/types/:id', (req, res) => {
 });
 
 
+/*
+    Type /DELETE routes
+*/
+
+// Delete a type
+
+router.delete('/types/:id', (req, res) => {
+
+    // Get the type ID from the request param
+    let type_id = req.params.id;
+
+    Types.where({ id: type_id }).destroy()
+        
+        .then(results => {
+
+            // OK status & send results, as JSON, back in response
+            res.status(200).send('Type DELETED.');
+
+        })
+
+        .catch(error => {
+
+            // log errors
+            console.log('Destroy a type error:', error);
+            
+            // send an internal server error
+            res.status(500);
+
+        })
+
+});
+
+
 
 /*
     Types CATCH ALL route

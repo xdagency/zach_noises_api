@@ -122,6 +122,16 @@ Updates a type at a specific ID
 
 -----
 
+```DELETE /api/types/:id```
+
+| Name      | Required  | Description   |
+| --------- | --------- | ------------- |   
+| id        | yes       | Number        |
+
+Deletes a type from the database
+
+-----
+
 ```GET /api/search?query=[QUERY]&more_than=[NUMBER]&less_than=[NUMBER]```
 
 | Name       | Required  | Description   |
